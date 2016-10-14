@@ -55,7 +55,7 @@ void list_destroy(LIST_HANDLE list)
     }
 }
 
-LIST_ITEM_HANDLE list_add(LIST_HANDLE list, const void* item)
+LIST_ITEM_HANDLE azure_list_add(LIST_HANDLE list, const void* item)
 {
     LIST_ITEM_INSTANCE* result;
 
@@ -101,7 +101,7 @@ LIST_ITEM_HANDLE list_add(LIST_HANDLE list, const void* item)
     return result;
 }
 
-int list_remove(LIST_HANDLE list, LIST_ITEM_HANDLE item)
+int azure_list_remove(LIST_HANDLE list, LIST_ITEM_HANDLE item)
 {
     int result;
 

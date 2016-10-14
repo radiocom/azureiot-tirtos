@@ -16,6 +16,8 @@
 #include <float.h>
 #include <math.h>
 
+#define EINVAL -1
+#define ENOMEM -2
 
 #ifdef WINCE
 #pragma warning(disable:4756) // warning C4756: overflow in constant arithmetic

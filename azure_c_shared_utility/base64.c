@@ -313,7 +313,7 @@ STRING_HANDLE Base64_Encode_Bytes(const unsigned char* source, size_t size)
     return result;
 }
 
-STRING_HANDLE Base64_Encode(BUFFER_HANDLE input)
+STRING_HANDLE azure_Base64_Encode(BUFFER_HANDLE input)
 {
     STRING_HANDLE result;
     /*the following will happen*/
