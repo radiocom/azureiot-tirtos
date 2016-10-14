@@ -2,7 +2,7 @@
  *  Do not modify this file; it is automatically 
  *  generated and any modifications will be overwritten.
  *
- * @(#) xdc-B06
+ * @(#) xdc-B21
  */
 
 #ifndef configPkg__

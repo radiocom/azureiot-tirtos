@@ -50,6 +50,7 @@
 #endif /* NAN */
 
 #define GUID_STRING_LENGTH 38
+#define DECIMAL_DIG        10
 
 // This is an artificial upper limit on floating point string length
 // (e.g. the size of the string when printing %f). It is set to twice the

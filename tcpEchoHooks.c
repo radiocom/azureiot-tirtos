@@ -52,14 +52,14 @@
 #define TCPHANDLERSTACK 1024
 #endif
 
+#include "remote_monitoring.h"
+
 /* Prototypes */
 Void tcpHandler(UArg arg0, UArg arg1);
 
-/*
- *  ======== netOpenHook ========
- *  NDK network open hook used to initialize IPv6
- */
-void netOpenHook()
+
+
+void netGetIP(UInt32 IPAddr, UInt32 IfIdx, UInt32 fAdd)
 {
     Task_Handle taskHandle;
     Task_Params taskParams;
@@ -73,6 +73,29 @@ void netOpenHook()
      *  arg0 will be the port that this task listens to.
      */
     Task_Params_init(&taskParams);
+    taskParams.stackSize = TCPHANDLERSTACK*2;
+    taskParams.priority = 1;
+    taskParams.arg0 = TCPPORT;
+    taskHandle = Task_create((Task_FuncPtr)remote_monitoring_run, &taskParams, &eb);
+    if (taskHandle == NULL) {
+        System_printf("netOpenHook: Failed to create tcpHandler Task\n");
+    }
+
+    System_flush();
+}
+
+/*
+ *  ======== netOpenHook ========
+ *  NDK network open hook used to initialize IPv6
+ */
+void netOpenHook()
+{
+    /*Task_Handle taskHandle;
+    Task_Params taskParams;
+    Error_Block eb;
+    Error_init(&eb);
+
+    Task_Params_init(&taskParams);
     taskParams.stackSize = TCPHANDLERSTACK;
     taskParams.priority = 1;
     taskParams.arg0 = TCPPORT;
@@ -81,5 +104,5 @@ void netOpenHook()
         System_printf("netOpenHook: Failed to create tcpHandler Task\n");
     }
 
-    System_flush();
+    System_flush();*/
 }

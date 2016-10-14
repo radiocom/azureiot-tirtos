@@ -60,7 +60,8 @@
 #define NUMTCPWORKERS 2
 
 /* USER STEP: update to current time (in secs) since epoch (i.e. Jan 1, 1970) */
-#define CURRENTTIME 1410303972
+#define CURRENTTIME 1476374400
+
 
 /*
  *  ======== exitApp ========
