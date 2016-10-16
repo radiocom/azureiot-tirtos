@@ -361,7 +361,7 @@ static int create_wolfssl_instance(TLS_IO_INSTANCE* tls_io_instance)
     }
     else
     {
-        tls_io_instance->ssl = wolfSSL_new(tls_io_instance->ssl_context);
+        tls_io_instance->ssl = wolfSSL_CTX_new(tls_io_instance->ssl_context);
         if (tls_io_instance->ssl == NULL)
         {
             wolfSSL_CTX_free(tls_io_instance->ssl_context);
@@ -447,7 +447,7 @@ CONCRETE_IO_HANDLE tlsio_wolfssl_create(void* io_create_parameters)
 
             //static char memory[80*1024];
 			//wolfSSL_CTX_load_static_memory(&result->ssl_context, wolfTLSv1_client_method, memory, sizeof(memory),0,1);
-            result->ssl_context = wolfSSL_CTX_new(wolfTLSv1_client_method());
+            result->ssl_context = wolfSSL_new(wolfTLSv1_client_method());
             if (result->ssl_context == NULL)
             {
                 free(result);
