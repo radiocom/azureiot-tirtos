@@ -34,6 +34,7 @@
 #include "iothub_client_private.h"
 #include "iothubtransportamqp.h"
 #include "iothub_client_version.h"
+#include "azure_c_shared_utility/umock_c_prod.h"
 
 #define INDEFINITE_TIME ((time_t)(-1))
 
@@ -400,6 +401,14 @@ static XIO_HANDLE getTLSIOTransport(const char* fqdn, int port)
     return result;
 }
 
+/*
+static OPTIONHANDLER_HANDLE  xio_retrieveoptions(XIO_HANDLE xio)
+{
+    OPTIONHANDLER_HANDLE result2= (OPTIONHANDLER_HANDLE)malloc(1);
+    return (OPTIONHANDLER_HANDLE)result2;
+}*/
+
+
 static void destroyConnection(AMQP_TRANSPORT_INSTANCE* transport_state)
 {
     if (transport_state->cbs.cbs != NULL)
@@ -435,11 +444,11 @@ static void destroyConnection(AMQP_TRANSPORT_INSTANCE* transport_state)
     if (transport_state->tls_io != NULL)
     {
         /*before destroying, we shall save its options for later use*/
-        /*transport_state->xioOptions = xio_retrieveoptions(transport_state->tls_io);
+        transport_state->xioOptions = xio_retrieveoptions(transport_state->tls_io);
         if (transport_state->xioOptions == NULL)
         {
             LogError("unable to retrieve xio_retrieveoptions");
-        }*/
+        }
         // Codes_SRS_IOTHUBTRANSPORTAMQP_09_034: [IoTHubTransportAMQP_Destroy shall destroy the AMQP TLS I/O transport.]
         xio_destroy(transport_state->tls_io);
         transport_state->tls_io = NULL;
@@ -1258,7 +1267,7 @@ static TRANSPORT_LL_HANDLE IoTHubTransportAMQP_Create(const IOTHUBTRANSPORT_CONF
 
             // Codes_SRS_IOTHUBTRANSPORTAMQP_09_010: [If config->upperConfig->protocolGatewayHostName is NULL, IoTHubTransportAMQP_Create shall create an immutable string, referred to as iotHubHostFqdn, from the following pieces: config->iotHubName + "." + config->iotHubSuffix.] 
             // Codes_SRS_IOTHUBTRANSPORTAMQP_20_001: [If config->upperConfig->protocolGatewayHostName is not NULL, IoTHubTransportAMQP_Create shall use it as iotHubHostFqdn]
-            if ((transport_state->iotHubHostFqdn = ((config->upperConfig->protocolGatewayHostName != NULL)? STRING_construct(config->upperConfig->protocolGatewayHostName) : concat3Params(config->upperConfig->iotHubName, ".", config->upperConfig->iotHubSuffix))) == NULL)
+            if ((transport_state->iotHubHostFqdn = (config->upperConfig->protocolGatewayHostName != NULL ? STRING_construct(config->upperConfig->protocolGatewayHostName) : concat3Params(config->upperConfig->iotHubName, ".", config->upperConfig->iotHubSuffix))) == NULL)
             {
                 LogError("Failed to set transport_state->iotHubHostFqdn.");
                 cleanup_required = true;

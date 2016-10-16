@@ -38,6 +38,8 @@ int setupRealTime(void)
 int platform_init(void)
 {
     int result = 0;
+    //wolfSSL_Init();
+    tlsio_wolfssl_init();
 
     /*if (EthernetInterface::init())
     {

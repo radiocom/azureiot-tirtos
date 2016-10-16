@@ -51,7 +51,7 @@ typedef int(*IO_SETOPTION)(CONCRETE_IO_HANDLE concrete_io, const char* optionNam
 
 typedef struct IO_INTERFACE_DESCRIPTION_TAG
 {
-    //IO_RETRIEVEOPTIONS concrete_io_retrieveoptions;
+    IO_RETRIEVEOPTIONS concrete_io_retrieveoptions;
     IO_CREATE concrete_io_create;
     IO_DESTROY concrete_io_destroy;
     IO_OPEN concrete_io_open;

@@ -445,6 +445,8 @@ CONCRETE_IO_HANDLE tlsio_wolfssl_create(void* io_create_parameters)
 
             result->tlsio_state = TLSIO_STATE_NOT_OPEN;
 
+            //static char memory[80*1024];
+			//wolfSSL_CTX_load_static_memory(&result->ssl_context, wolfTLSv1_client_method, memory, sizeof(memory),0,1);
             result->ssl_context = wolfSSL_CTX_new(wolfTLSv1_client_method());
             if (result->ssl_context == NULL)
             {

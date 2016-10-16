@@ -50,7 +50,6 @@
 #endif /* NAN */
 
 #define GUID_STRING_LENGTH 38
-#define DECIMAL_DIG        10
 
 // This is an artificial upper limit on floating point string length
 // (e.g. the size of the string when printing %f). It is set to twice the
@@ -61,6 +60,7 @@
 // But currently no explicit requests for this exist in the file nor are
 // any expected to reasonably occur when being used (numbers that hit
 // this limit would be experiencing significant precision loss in storage anyway.
+#define DECIMAL_DIG 10
 #define MAX_FLOATING_POINT_STRING_LENGTH (DECIMAL_DIG *2 + 2)
 
 // This maximum length is 11 for 32 bit integers (including the sign)

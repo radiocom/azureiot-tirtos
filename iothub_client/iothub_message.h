@@ -12,6 +12,8 @@
 #include "azure_c_shared_utility/macro_utils.h"
 #include "azure_c_shared_utility/map.h" 
 
+#include "azure_c_shared_utility/umock_c_prod.h"
+
 #ifdef __cplusplus
 #include <cstddef>
 extern "C" 

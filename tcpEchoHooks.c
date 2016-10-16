@@ -73,7 +73,7 @@ void netGetIP(UInt32 IPAddr, UInt32 IfIdx, UInt32 fAdd)
      *  arg0 will be the port that this task listens to.
      */
     Task_Params_init(&taskParams);
-    taskParams.stackSize = TCPHANDLERSTACK*2;
+    taskParams.stackSize = 1024*10;
     taskParams.priority = 1;
     taskParams.arg0 = TCPPORT;
     taskHandle = Task_create((Task_FuncPtr)remote_monitoring_run, &taskParams, &eb);
